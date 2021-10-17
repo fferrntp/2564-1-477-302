@@ -9,7 +9,8 @@
 
 
     
-    $con
+    $con = mtsqli_connect($host, $db_username, $db_passwd, $db_name)
+    or die("Error" . mysqli_error($con));
 ?>
  //register2,3
 //ไฟล์นี้ใช้
