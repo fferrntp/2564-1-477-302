@@ -1,6 +1,19 @@
 <?php
 		//7.check admin username and password, set admin name as "admin" and password as "pass1234"
-
+		session_start();
+		
+		if(isset($_POST['admin-login'])) {
+			$admin_name = $_POST['admin-name'];
+			$admin_passwd = $_POST['admin-password'];
+			
+			if ($admin_name == 'admin' && $admin_passwd == 'pass1234') {
+				$_SESSION['id'] = 0;
+				$_SESSION['name'] = "admin";
+				header("location: show_user.php"); 
+			} else {
+				$error_msg = "Incorrect admin name or password.";
+			}
+		}
 ?>
 
 <!DOCTYPE html>
@@ -44,20 +57,23 @@
 
 					<div class="form-group">
 						<label for="name">Admin Name</label>
-						<input type="text" name="admin_name" placeholder="Admin Name" required class="form-control" />
+						<input type="text" name="admin-name" placeholder="Admin Name" required class="form-control" />
 					</div>
 
 					<div class="form-group">
 						<label for="name">Password</label>
-						<input type="password" name="password" placeholder="Your Password" required class="form-control" />
+						<input type="password" name="admin-password" placeholder="Your Password" required class="form-control" />
 					</div>
 
 					<div class="form-group">
-						<input type="submit" name="login" value="Login" class="btn btn-primary" />
+						<input type="submit" name="admin-login" value="Login" class="btn btn-primary" />
 					</div>
 				</fieldset>
 			</form>
 			<!--8.display message -->
+			<span? class="text-danger">
+				<?php if (isset($error_msg)) { echo $error_msg; } ?>
+			</span>
 			
 		</div>
 	</div>
